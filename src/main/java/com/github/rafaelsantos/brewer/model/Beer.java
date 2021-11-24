@@ -1,7 +1,10 @@
 package com.github.rafaelsantos.brewer.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Beer {
 
+	@NotBlank
 	private String sku;
 	private String name;
 	
