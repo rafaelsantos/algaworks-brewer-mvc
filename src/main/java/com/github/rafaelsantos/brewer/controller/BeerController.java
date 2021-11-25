@@ -15,14 +15,14 @@ import com.github.rafaelsantos.brewer.model.Beer;
 public class BeerController {
 
 	@RequestMapping("/beer/add")
-	public String add() {
+	public String add(Model model) {
+		model.addAttribute(new Beer());
 		return "beer/add";
 	}
 	
 	@RequestMapping(value = "/beer/add", method = RequestMethod.POST)
 	public String save(@Valid Beer beer, BindingResult result, Model model, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			model.addAttribute("message", "Error");
 			return "beer/add";
 		}
 		

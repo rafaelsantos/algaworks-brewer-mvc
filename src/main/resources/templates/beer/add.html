@@ -4,20 +4,33 @@
 
 	<body>
 		<h1>Thymeleaf configured!</h1>
-		<form method="POST">
+		<form method="POST" th:object="${beer}">
+			<span th:text="${#fields.hasAnyErrors()}"></span>
+			<div th:each="error: ${#fields.detailedErrors()}">
+				<span th:text="${error.message}"></span>
+			</div>
 			<span th:text="${message}"></span>
 			<br />
+			<br />
+			
 			<label for="sku">SKU</label>
+			<br />
 			<input type="text" id="sku" name="sku" />
 			<br />
+			<br />
+			
 			<label for="name">Name</label>
+			<br />
 			<input type="text" id="name" name="name" />
 			<br />
-			<label for="description">Description</label>
-			<textarea rows="5" cols="5" id="description" name="description">
-			</textarea>
-			<input type="text" id="description" name="description" />
 			<br />
+			
+			<label for="description">Description</label>
+			<br />
+			<textarea rows="5" cols="16" id="description" name="description">
+			</textarea>
+			<br />
+			
 			<input type="submit" value="Save" />
 		</form>
 	</body>
