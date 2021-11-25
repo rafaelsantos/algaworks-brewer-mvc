@@ -4,11 +4,10 @@
 
 	<body>
 		<h1>Thymeleaf configured!</h1>
+		<div th:each="error: ${#fields.detailedErrors('${beer.*}')}">
+			<span th:text="${error.message}"></span>
+		</div>
 		<form method="POST" th:object="${beer}">
-			<span th:text="${#fields.hasAnyErrors()}"></span>
-			<div th:each="error: ${#fields.detailedErrors()}">
-				<span th:text="${error.message}"></span>
-			</div>
 			<span th:text="${message}"></span>
 			<br />
 			<br />

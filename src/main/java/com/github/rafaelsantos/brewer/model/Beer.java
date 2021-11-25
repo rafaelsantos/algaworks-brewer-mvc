@@ -6,13 +6,13 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class Beer {
 
-	@NotBlank
+	@NotBlank(message = "SKU is required")
 	private String sku;
 	
-	@NotBlank
+	@NotBlank(message = "Name is required")
 	private String name;
 	
-	@NotBlank @Size(max = 50)
+	@Size(max = 50, message = "Text length must be between 1 and 50")
 	private String description;
 	
 	public String getSku() {
