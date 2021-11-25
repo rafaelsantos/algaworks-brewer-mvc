@@ -14,19 +14,19 @@
 			
 			<label for="sku">SKU</label>
 			<br />
-			<input type="text" id="sku" name="sku" />
+			<input type="text" id="sku" th:field="*{sku}" />
 			<br />
 			<br />
 			
 			<label for="name">Name</label>
 			<br />
-			<input type="text" id="name" name="name" />
+			<input type="text" id="name" th:field="*{name}" />
 			<br />
 			<br />
 			
 			<label for="description">Description</label>
 			<br />
-			<textarea rows="5" cols="16" id="description" name="description">
+			<textarea rows="5" cols="16" id="description" th:field="*{description}">
 			</textarea>
 			<br />
 			
