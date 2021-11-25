@@ -1,5 +1,8 @@
 package com.github.rafaelsantos.brewer.config.init;
 
+import javax.servlet.Filter;
+
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.github.rafaelsantos.brewer.config.WebConfig;
@@ -19,6 +22,15 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 	@Override
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
+	}
+	
+	@Override
+	protected Filter[] getServletFilters() {
+		CharacterEncodingFilter encoding = new CharacterEncodingFilter();
+		encoding.setEncoding("UTF-8");
+		encoding.setForceEncoding(true);
+		
+		return new Filter[] { encoding };
 	}
 
 }
