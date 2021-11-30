@@ -1,36 +1,216 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      			xmlns:th="http://www.thymeleaf.org">
+      			
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+    	
+    <title>Brewer</title>
+    	
+	<link rel="stylesheet" type="text/css" href="/algaworks-brewer-mvc/layout/stylesheets/vendors.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/algaworks-brewer-mvc/layout/stylesheets/brewer.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/algaworks-brewer-mvc/layout/stylesheets/application.css"/>
+    	
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
 
-	<body>
-		<h1>Thymeleaf configured!</h1>
-		<div th:each="error: ${#fields.detailedErrors('${beer.*}')}">
-			<span th:text="${error.message}"></span>
+<body>
+	<div class="aw-layout-page">
+		<nav class="navbar  navbar-fixed-top  navbar-default  js-sticky-reference" id="main-navbar">
+		  <div class="container-fluid">
+	
+		    <div class="navbar-header">
+		      <a class="navbar-brand  hidden-xs" href="#">
+		        <img alt="Brewer" src="/algaworks-brewer-mvc/images/logo.png"/>
+		      </a>
+	
+		      <ul class="nav  navbar-nav">
+		        <li>
+		          <a href="#" class="js-sidebar-toggle"><i class="fa  fa-bars"></i></a>
+		        </li>
+		      </ul>
+		    </div>
+	
+		    <ul class="nav navbar-nav  navbar-right">
+		      
+		      <li>
+		        <a href="#"><em class="fa  fa-sign-out"></em></a>
+		      </li> 
+		    </ul>
+	
+		  </div>
+		</nav>
+		
+		<aside class="aw-layout-sidebar  js-sidebar">
+			<div class="aw-layout-sidebar__content">
+			    <nav class="aw-menu  js-menu">
+			      <ul class="aw-menu__list">
+			
+			        <li class="aw-menu__item">
+			          <a href="dashboard.html"><i class="fa  fa-fw  fa-home"></i><span>Dashboard</span></a>
+			        </li>
+			
+			        <li class="aw-menu__item  is-active">
+			          <a href="#">
+			            <i class="fa  fa-fw  fa-file-text"></i><span>Product</span>
+			            <i class="aw-menu__navigation-icon  fa"></i>
+			          </a>
+			      
+			          <ul class="aw-menu__list  aw-menu__list--sublist">
+			            <li class="aw-menu__item  aw-menu__item--link"><a href="product.html">Add product</a></li>
+			            <li class="aw-menu__item  aw-menu__item--link  is-active"><a href="search.html">Search</a></li>
+			            <li class="aw-menu__item  aw-menu__item--link"><a href="table.html">Table</a></li>
+			          </ul>
+			        </li>
+			
+			        <li class="aw-menu__item  is-expanded">
+			          <a href="#">
+			            <i class="fa  fa-fw  fa-file-text"></i><span>Common pages</span>
+			            <i class="aw-menu__navigation-icon  fa"></i>
+			          </a>
+			
+			          <ul class="aw-menu__list  aw-menu__list--sublist">
+			            <li class="aw-menu__item  aw-menu__item--link"><a href="empty.html">Empty page</a></li>
+			            <li class="aw-menu__item  aw-menu__item--link"><a href="login.html">Login</a></li>
+			            <li class="aw-menu__item  aw-menu__item--link"><a href="forgot.html">Forgot password</a></li>
+			            <li class="aw-menu__item  aw-menu__item--link"><a href="403.html">403</a></li>
+			            <li class="aw-menu__item  aw-menu__item--link"><a href="404.html">404</a></li>
+			            <li class="aw-menu__item  aw-menu__item--link"><a href="500.html">500</a></li>
+			          </ul>
+			        </li>
+			
+			      </ul>
+			    </nav>
+			</div>
+		</aside>
+		<section class="aw-layout-content  js-content">
+	
+	
+			<div class="page-header">
+				<div class="container-fluid">
+					<h1>
+						Add Beer
+					</h1>
+				</div>
+			</div>
+	
+			<div class="container-fluid">
+			
+				<div class="alert  alert-danger  alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<i class="fa  fa-exclamation-circle"></i> Beer already exists.
+				</div>
+			
+				<form method="POST" th:object="${beer}" class="form-vertical  js-form-loading">
+					
+					<div class="row">
+						<div class="col-sm-2 form-group">
+							<label for="sku">SKU</label>
+							<input id="sku" type="text" class="form-control"/>
+						</div>
+						
+						<div class="col-sm-10 form-group">
+							<label for="name">Name</label>
+							<input id="name" type="text" class="form-control"/>
+						</div>
+					</div>
+			
+					<div class="form-group">
+						<label for="description">Description</label>
+						<textarea id="description" rows="3" class="form-control"></textarea>
+					</div>
+			
+					<div class="row">
+						<div class="col-sm-3 form-group">
+							<label for="type">Type</label>
+							<select id="type" class="form-control">
+								<option value="">Select type</option>
+							</select>
+						</div>
+						
+						<div class="col-sm-3 form-group">
+							<label for="flavor">Flavor</label>
+							<select id="flavor" class="form-control">
+								<option value="">Select flavor</option>
+							</select>
+						</div>
+						
+						<div class="col-sm-3 form-group">
+							<label for="alcoholPercentage">Alcohol percentage</label>
+							<div class="input-group">
+								<input id="alcoholPercentage" type="text" class="form-control"/>
+								<div class="input-group-addon">%</div>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-sm-6 form-group">
+							<label for="origin">Origin</label>
+							<div>
+								<div class="radio radio-inline">
+									<input type="radio" name="origin">
+									<label>National</label>
+								</div>
+								<div class="radio radio-inline">
+									<input type="radio" name="origin">
+									<label>International</label>
+								</div>
+							</div> 
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-sm-3 form-group">
+							<label for="price">Price</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input id="price" type="text" class="form-control"/>
+							</div>
+						</div>
+						
+						<div class="col-sm-3 form-group">
+							<label for="commission">Commission</label>
+							<div class="input-group">
+								<input id="commission" type="text" class="form-control"/>
+								<div class="input-group-addon">%</div>
+							</div>
+						</div>
+						
+						<div class="col-sm-3 form-group">
+							<label for="commission">Commission</label>
+							<div class="input-group">
+								<input id="commission" type="text" class="form-control"/>
+								<div class="input-group-addon">%</div>
+							</div>
+						</div>
+						
+						<div class="col-sm-3 form-group">
+							<label for="stock">Stock</label>
+							<input id="stock" type="text" class="form-control"/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<button class="btn  btn-primary" type="submit">Save</button>
+					</div>
+			
+				</form>
+			</div>
+		</section>
+		<footer class="aw-layout-footer  js-content">
+			<div class="container-fluid">
+				<span class="aw-footer-disclaimer">&copy; 2021 Brewer. All rights reserved</span>
+			</div>
+		</footer>
 		</div>
-		<form method="POST" th:object="${beer}">
-			<span th:text="${message}"></span>
-			<br />
-			<br />
-			
-			<label for="sku">SKU</label>
-			<br />
-			<input type="text" id="sku" th:field="*{sku}" />
-			<br />
-			<br />
-			
-			<label for="name">Name</label>
-			<br />
-			<input type="text" id="name" th:field="*{name}" />
-			<br />
-			<br />
-			
-			<label for="description">Description</label>
-			<br />
-			<textarea rows="5" cols="16" id="description" th:field="*{description}">
-			</textarea>
-			<br />
-			
-			<input type="submit" value="Save" />
-		</form>
-	</body>
+		
+<script src="/algaworks-brewer-mvc/layout/javascripts/vendors.min.js"></script>
+<script src="/algaworks-brewer-mvc/layout/javascripts/brewer.min.js"></script>
+</body>
 </html>

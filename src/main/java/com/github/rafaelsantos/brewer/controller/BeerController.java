@@ -30,10 +30,4 @@ public class BeerController {
 		attributes.addFlashAttribute("message", "Data saved successfully!");
 		return "redirect:/beer/add";
 	}
-	
-	@RequestMapping("/beer/product")
-	public String product() {
-		return "beer/product";
-	}
-	
 }
