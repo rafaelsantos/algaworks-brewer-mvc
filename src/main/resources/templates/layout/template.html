@@ -10,9 +10,9 @@
     	
     <title>Brewer</title>
     	
-	<link rel="stylesheet" type="text/css" href="/algaworks-brewer-mvc/layout/stylesheets/vendors.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/algaworks-brewer-mvc/layout/stylesheets/brewer.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/algaworks-brewer-mvc/layout/stylesheets/application.css"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/vendors.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/brewer.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/application.css}"/>
     	
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,7 +28,7 @@
 	
 		    <div class="navbar-header">
 		      <a class="navbar-brand  hidden-xs" href="#">
-		        <img alt="Brewer" src="/algaworks-brewer-mvc/images/logo.png"/>
+		        <img alt="Brewer" th:src="@{/images/logo.png}"/>
 		      </a>
 	
 		      <ul class="nav  navbar-nav">
@@ -97,7 +97,7 @@
 			</div>
 		</footer>
 	</div>
-	<script src="/algaworks-brewer-mvc/layout/javascripts/vendors.min.js"></script>
-	<script src="/algaworks-brewer-mvc/layout/javascripts/brewer.min.js"></script>
+	<script th:src="@{/layout/javascripts/vendors.min.js}"></script>
+	<script th:src="@{/layout/javascripts/brewer.min.js}"></script>
 </body>
 </html>
