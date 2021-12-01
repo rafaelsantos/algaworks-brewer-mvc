@@ -25,6 +25,7 @@
 		<servlet.version>3.1.0</servlet.version>
 		<thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>
 		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
+		<thymeleaf-layout-dialect.version>2.0.0</thymeleaf-layout-dialect.version>
 	</properties>
 
 	<build>
@@ -93,6 +94,11 @@
 			<scope>compile</scope>
 		</dependency>
 		
-		
+		<!-- Thymeleaf Layout Dialect -->
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+			<version>${thymeleaf-layout-dialect.version}</version>
+		</dependency>
 	</dependencies>
 </project>
