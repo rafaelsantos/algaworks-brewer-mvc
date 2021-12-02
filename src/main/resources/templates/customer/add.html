@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorator="'layout/template'">
+
+<head></head>
+
+	<section layout:fragment="content">
+	
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>
+					Add Customer
+				</h1>
+			</div>
+		</div>
+	
+		<div class="container-fluid">
+			<form>
+				<div class="row">
+					<div class="form-group  col-sm-12">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" id="name" autofocus="autofocus"/>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group  col-sm-4">
+						<label>Type</label> 
+						<div>
+							<div class="radio  radio-inline">
+								<input type="radio" name="person"> 
+								<label>Person</label>
+							</div>
+							<div class="radio  radio-inline">
+								<input type="radio" name="entity"> 
+								<label>Entity</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group  col-sm-8" >
+						<label for="cpfCnpj">CPF/CNPJ</label>
+						<input type="text" class="form-control" id="cpfCnpj"/>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group  col-sm-4">
+						<label for="phone">Phone</label>
+						<input type="text" class="form-control" id="phone"/>
+					</div>
+					
+					<div class="form-group  col-sm-8">
+						<label for="mail">Mail</label>
+						<input type="text" class="form-control" id="mail"/>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group  col-sm-4">
+						<label for="address">Address</label>
+						<input type="text" class="form-control" id="address"/>
+					</div>
+					
+					<div class="form-group  col-sm-4">
+						<label for="number">Number</label>
+						<input type="text" class="form-control" id="number"/>
+					</div>
+					
+					<div class="form-group  col-sm-4">
+						<label for="complement">Complement</label>
+						<input type="text" class="form-control" id="complement"/>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group  col-sm-4">
+						<label for="cep">CEP</label>
+						<input type="text" class="form-control" id="cep"/>
+					</div>
+					
+					<div class="form-group  col-sm-4">
+						<label for="state">State</label>
+						<select id="state" class="form-control">
+		                    <option value="">Select state</option>
+		                </select>
+					</div>
+					
+					<div class="form-group  col-sm-4">
+						<label  for="city">City</label>
+						<select id="city" class="form-control">
+							<option value="">Select city</option>
+						</select>
+					</div>
+				</div>
+				
+				<button type="submit" class="btn  btn-primary">Save</button>				
+			</form>
+		</div>
+	</section>
+
+</html>
