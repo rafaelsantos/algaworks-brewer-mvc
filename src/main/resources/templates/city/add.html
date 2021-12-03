@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="'layout/template'">
+
+<head></head>
+
+<body>
+	<section layout:fragment="content">
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>
+					Add City
+				</h1>
+			</div>
+		</div>
+		
+		<div class="container-fluid">
+			<form>
+				<div class="row">
+					<div class="form-group  col-sm-4" >
+						<label for="state">State</label>
+						<select id="state" class="form-control">
+		                    <option value="">Select state</option>
+		                </select>
+					</div>
+					
+					<div class="form-group  col-sm-8">
+						<label for="name">City name</label>
+						<input type="text" class="form-control" id="name" autofocus="autofocus"/>
+					</div>
+				</div>
+				
+				<button type="submit" class="btn  btn-primary">Save</button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>
