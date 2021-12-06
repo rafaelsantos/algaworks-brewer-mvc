@@ -33,6 +33,7 @@ public class Beer {
 	@Size(max = 50, message = "Text length must be between 1 and 50")
 	private String description;
 	
+	@Column(name = "beer_value")
 	private BigDecimal value;
 	
 	@Column(name = "alcohol_percentage")
