@@ -1,11 +1,7 @@
 package com.github.rafaelsantos.brewer.controller;
 
-import java.util.Optional;
-
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -14,40 +10,38 @@ import org.springframework.validation.BindingResult;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.rafaelsantos.brewer.model.Beer;
-import com.github.rafaelsantos.brewer.repository.BeerRepository;
+import com.github.rafaelsantos.brewer.model.Flavor;
+import com.github.rafaelsantos.brewer.model.Origin;
+import com.github.rafaelsantos.brewer.repository.TypeRepository;
 
 @Controller
 public class BeerController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(BeerController.class);
-	
 	@Autowired
-	private BeerRepository beerRepository;
+	private TypeRepository typeRepository;
 
 	@RequestMapping("/beer/add")
-	public String add(Beer beer) {
-		beerRepository.findAll();
+	public ModelAndView add(Beer beer) {
+		ModelAndView modelView = new ModelAndView("beer/add");
 		
-		Optional<Beer> optionalBeer = beerRepository.findBySkuIgnoreCase("463783");
-		logger.info(optionalBeer.toString());
+		modelView.addObject("flavours", Flavor.values());
+		modelView.addObject("types", typeRepository.findAll());
+		modelView.addObject("origins", Origin.values());
 		
-		if (logger.isDebugEnabled())
-			logger.debug(beer.toString());
-		
-		return "beer/add";
+		return modelView;
 	}
 	
 	@RequestMapping(value = "/beer/add", method = RequestMethod.POST)
-	public String save(@Valid Beer beer, BindingResult result, Model model, RedirectAttributes attributes) {
+	public ModelAndView save(@Valid Beer beer, BindingResult result, Model model, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			return add(beer);
 		}
 		
 		attributes.addFlashAttribute("message", "Data saved successfully!");
-		return "redirect:/beer/add";
+		return new ModelAndView("redirect:/beer/add");
 	}
 }
