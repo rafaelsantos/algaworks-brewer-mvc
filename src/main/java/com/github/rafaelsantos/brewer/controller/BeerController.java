@@ -1,5 +1,7 @@
 package com.github.rafaelsantos.brewer.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -29,6 +31,9 @@ public class BeerController {
 	@RequestMapping("/beer/add")
 	public String add(Beer beer) {
 		beerRepository.findAll();
+		
+		Optional<Beer> optionalBeer = beerRepository.findBySkuIgnoreCase("463783");
+		logger.info(optionalBeer.toString());
 		
 		if (logger.isDebugEnabled())
 			logger.debug(beer.toString());
