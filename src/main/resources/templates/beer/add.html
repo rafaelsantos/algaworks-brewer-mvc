@@ -47,7 +47,7 @@
 						<label for="type">Type</label>
 						
 						<div class="bw-field-action">
-							<select id="type" class="form-control">
+							<select id="type" class="form-control" th:field="*{type}">
 								<option value="">Select type</option>
 								<option th:each="type : ${types}" th:value="${type.code}" th:text="${type.name}"/>
 							</select>
@@ -94,7 +94,7 @@
 						<label for="price">Price</label>
 						<div class="input-group">
 							<div class="input-group-addon">$</div>
-							<input id="price" type="text" class="form-control js-decimal" th:field="*{valor}"/>
+							<input id="price" type="text" class="form-control js-decimal" th:field="*{value}"/>
 						</div>
 					</div>
 					

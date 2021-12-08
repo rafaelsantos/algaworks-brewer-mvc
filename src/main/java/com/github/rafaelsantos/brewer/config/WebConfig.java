@@ -8,7 +8,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
+import org.springframework.format.support.DefaultFormattingConversionService;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.servlet.ViewResolver;
 
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -25,6 +26,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import com.github.rafaelsantos.brewer.controller.BeerController;
+import com.github.rafaelsantos.brewer.controller.converter.TypeConverter;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
@@ -60,6 +62,14 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		engine.addDialect(new LayoutDialect());
 		
 		return engine;
+	}
+	
+	@Bean
+	public FormattingConversionService mvcConversionService() {
+		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
+		conversionService.addConverter(new TypeConverter());
+		
+		return conversionService;
 	}
 	
 	private ITemplateResolver templateResolver() {
