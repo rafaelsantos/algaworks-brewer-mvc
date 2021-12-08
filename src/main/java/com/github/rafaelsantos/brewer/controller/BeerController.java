@@ -17,12 +17,16 @@ import com.github.rafaelsantos.brewer.model.Beer;
 import com.github.rafaelsantos.brewer.model.Flavor;
 import com.github.rafaelsantos.brewer.model.Origin;
 import com.github.rafaelsantos.brewer.repository.TypeRepository;
+import com.github.rafaelsantos.brewer.service.BeerService;
 
 @Controller
 public class BeerController {
 	
 	@Autowired
 	private TypeRepository typeRepository;
+	
+	@Autowired
+	private BeerService beerService;
 
 	@RequestMapping("/beer/add")
 	public ModelAndView add(Beer beer) {
@@ -41,7 +45,9 @@ public class BeerController {
 			return add(beer);
 		}
 		
+		beerService.save(beer);
 		attributes.addFlashAttribute("message", "Data saved successfully!");
+		
 		return new ModelAndView("redirect:/beer/add");
 	}
 }
