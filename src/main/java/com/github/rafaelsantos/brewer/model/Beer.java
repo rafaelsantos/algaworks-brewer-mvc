@@ -12,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -33,26 +37,37 @@ public class Beer {
 	@NotBlank(message = "Name is required")
 	private String name;
 	
-	@Size(min = 1, max = 50, message = "Description length must be between 1 and 50")
+	@NotBlank(message = "Description is required")
+	@Size(max = 50, message = "Description length must be between 1 and 50")
 	private String description;
 	
+	@NotNull(message = "Beer value is required")
+	@DecimalMin(value = "0.50", message = "Beer value must be greater than $0,50")
+	@DecimalMax(value = "9999999.99", message = "Beer value must be less than $9.999.999,99")
 	@Column(name = "beer_value")
 	private BigDecimal value;
 	
+	@NotNull(message = "Alcohol percentage is required")
+	@DecimalMax(value = "100.0", message = "Alcohol percentage must be less than 100")
 	@Column(name = "alcohol_percentage")
 	private BigDecimal alcoholPercentage;
 	
+	@DecimalMax(value = "100.0", message = "Commission must be equal or less than 100")
 	private BigDecimal commission;
 	
+	@Max(value = 9999, message = "Stock quantity must be less than 9.999")
 	@Column(name = "stock_quantity")
 	private Integer stockQuantity;
 	
+	@NotNull(message = "Beer origin is required")
 	@Enumerated(EnumType.STRING)
 	private Origin origin;
 	
+	@NotNull(message = "Beer flavor is required")
 	@Enumerated(EnumType.STRING)
 	private Flavor flavor;
 	
+	@NotNull(message = "Beer type is required")
 	@ManyToOne
 	@JoinColumn(name = "type_code")
 	private Type type;
