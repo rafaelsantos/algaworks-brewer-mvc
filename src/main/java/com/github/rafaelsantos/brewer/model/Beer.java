@@ -12,10 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.github.rafaelsantos.brewer.validation.SKU;
 
 @Entity
 @Table(name = "beer")
@@ -25,7 +26,7 @@ public class Beer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long code;
 
-	@Pattern(regexp = "([a-zA-Z{2}''d{4}])?", message = "SKU should follow the following pattern XX9999")
+	@SKU
 	@NotBlank(message = "SKU is required")
 	private String sku;
 	
