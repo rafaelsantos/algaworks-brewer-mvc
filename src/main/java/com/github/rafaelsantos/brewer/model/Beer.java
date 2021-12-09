@@ -30,7 +30,7 @@ public class Beer {
 	@NotBlank(message = "Name is required")
 	private String name;
 	
-	@Size(max = 50, message = "Text length must be between 1 and 50")
+	@Size(min = 1, max = 50, message = "Description length must be between 1 and 50")
 	private String description;
 	
 	@Column(name = "beer_value")

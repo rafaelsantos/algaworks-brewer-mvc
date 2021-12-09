@@ -35,7 +35,7 @@ public class JPAConfig {
 	}
 	
 	@Bean
-	public JpaVendorAdapter jpaAdapter() {
+	public JpaVendorAdapter jpaVendorAdapter() {
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		adapter.setDatabase(Database.MYSQL);
 		adapter.setShowSql(false);
@@ -46,10 +46,10 @@ public class JPAConfig {
 	}
 	
 	@Bean
-	public EntityManagerFactory entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaAdapter) {
+	public EntityManagerFactory entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setDataSource(dataSource);
-		factory.setJpaVendorAdapter(jpaAdapter);
+		factory.setJpaVendorAdapter(jpaVendorAdapter);
 		factory.setPackagesToScan(Beer.class.getPackage().getName());
 		factory.afterPropertiesSet();
 		
