@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.rafaelsantos.brewer.model.Type;
 import com.github.rafaelsantos.brewer.service.TypeService;
+import com.github.rafaelsantos.brewer.service.exception.TypeNameExistsException;
 
 @Controller
 public class TypeController {
@@ -30,7 +31,13 @@ public class TypeController {
 			return add(type);
 		}
 		
-		typeService.save(type);
+		try {
+			typeService.save(type);
+		} catch(TypeNameExistsException error) {
+			result.rejectValue("name", error.getMessage(), error.getMessage());
+			return add(type);
+		}
+
 		attributes.addFlashAttribute("message", "Type saved sucessfully!");
 		
 		return new ModelAndView("redirect:/type/add");
