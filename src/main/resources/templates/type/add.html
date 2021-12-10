@@ -1,32 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-      			xmlns:th="http://www.thymeleaf.org">
-<body>
-	<div class="modal fade" id="typeModal" tabIndex="-1" role="dialog" th:fragment="modal">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">Add types</h4>
-				</div>
-				<div class="modal-body">
-					<form class="form-horizontal">
-						<div class="form-group">
-							<label class="col-sm-4 control-label" for="name">Type Name</label>
-							<div class="col-sm-8">
-								<input id="name" type="text" class="form-control" autofocus="autofocus"/>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">Save</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				</div>
-			</div>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="'layout/template'">
+
+<head></head>
+
+<section layout:fragment="content">
+
+	<div class="page-header">
+		<div class="container-fluid">
+			<h1>
+				Add Type
+			</h1>
 		</div>
 	</div>
-</body>
+	
+	<div class="container-fluid">
+		<th:block th:include="fragments/alerts/info"/>
+	
+		<form method="POST" th:object="${type}">
+			<th:block th:include="fragments/alerts/error"/>
+			
+			<div class="row">
+				<div class="form-group  col-sm-12" th:classappend="${#fields.hasErrors('name')} ? has-error">
+					<label for="name" class="control-label">Name</label>
+					<input type="text" class="form-control" id="name" autofocus="autofocus" th:field="*{name}"/>
+				</div>
+			</div>
+				
+			<button type="submit" class="btn  btn-primary">Salvar</button>
+		</form>
+	</div>
+</section>
+
 </html>

@@ -46,7 +46,7 @@ public class BeerController {
 		}
 		
 		beerService.save(beer);
-		attributes.addFlashAttribute("message", "Data saved successfully!");
+		attributes.addFlashAttribute("message", "Beer saved successfully!");
 		
 		return new ModelAndView("redirect:/beer/add");
 	}
