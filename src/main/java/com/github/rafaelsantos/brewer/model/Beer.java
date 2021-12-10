@@ -52,9 +52,11 @@ public class Beer {
 	@Column(name = "alcohol_percentage")
 	private BigDecimal alcoholPercentage;
 	
+	@NotNull(message = "Commission is required")
 	@DecimalMax(value = "100.0", message = "Commission must be equal or less than 100")
 	private BigDecimal commission;
 	
+	@NotNull(message = "Stock quantity is required")
 	@Max(value = 9999, message = "Stock quantity must be less than 9.999")
 	@Column(name = "stock_quantity")
 	private Integer stockQuantity;

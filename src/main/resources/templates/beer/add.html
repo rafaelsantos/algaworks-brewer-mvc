@@ -24,25 +24,25 @@
 				<th:block th:include="fragments/alerts/error"/>
 				
 				<div class="row">
-					<div class="col-sm-2 form-group">
-						<label for="sku">SKU</label>
+					<div class="col-sm-2 form-group" th:classappend="${#fields.hasErrors('sku')} ? has-error">
+						<label for="sku" class="control-label">SKU</label>
 						<input id="sku" type="text" class="form-control" th:field="*{sku}"/>
 					</div>
 					
-					<div class="col-sm-10 form-group">
-						<label for="name">Name</label>
+					<div class="col-sm-10 form-group" th:classappend="${#fields.hasErrors('name')} ? has-error">
+						<label for="name" class="control-label">Name</label>
 						<input id="name" type="text" class="form-control" th:field="*{name}"/>
 					</div>
 				</div>
 		
-				<div class="form-group">
-					<label for="description">Description</label>
+				<div class="form-group" th:classappend="${#fields.hasErrors('description')} ? has-error">
+					<label for="description" class="control-label">Description</label>
 					<textarea id="description" rows="3" class="form-control" th:field="*{description}"></textarea>
 				</div>
 		
 				<div class="row">
-					<div class="col-sm-3 form-group">
-						<label for="type">Type</label>
+					<div class="col-sm-3 form-group" th:classappend="${#fields.hasErrors('type')} ? has-error">
+						<label for="type" class="control-label">Type</label>
 						
 						<div class="bw-field-action">
 							<select id="type" class="form-control" th:field="*{type}">
@@ -58,24 +58,24 @@
 						</div>
 					</div>
 					
-					<div class="col-sm-3 form-group">
-						<label for="flavor">Flavor</label>
+					<div class="col-sm-3 form-group" th:classappend="${#fields.hasErrors('flavor')} ? has-error">
+						<label for="flavor" class="control-label">Flavor</label>
 						<select id="flavor" class="form-control" th:field="*{flavor}">
 							<option value="">Select flavor</option>
 							<option th:each="flavor : ${flavours}" th:value="${flavor}" th:text="${flavor.description}"/>
 						</select>
 					</div>
 					
-					<div class="col-sm-3 form-group">
-						<label for="alcoholPercentage">Alcohol percentage</label>
+					<div class="col-sm-3 form-group" th:classappend="${#fields.hasErrors('alcoholPercentage')} ? has-error">
+						<label for="alcoholPercentage" class="control-label">Alcohol percentage</label>
 						<div class="input-group">
 							<input id="alcoholPercentage" type="text" class="form-control js-decimal" th:field="*{alcoholPercentage}"/>
 							<div class="input-group-addon">%</div>
 						</div>
 					</div>
 					
-					<div class="col-lg-3 col-sm-6 form-group">
-						<label for="origin">Origin</label>
+					<div class="col-lg-3 col-sm-6 form-group" th:classappend="${#fields.hasErrors('origin')} ? has-error">
+						<label for="origin" class="control-label">Origin</label>
 						<div>
 							<th:block th:each="origin : ${origins}">
 								<div class="radio radio-inline">
@@ -88,24 +88,24 @@
 				</div>
 				
 				<div class="row">
-					<div class="col-sm-3 form-group">
-						<label for="price">Price</label>
+					<div class="col-sm-3 form-group" th:classappend="${#fields.hasErrors('value')} ? has-error">
+						<label for="price" class="control-label">Price</label>
 						<div class="input-group">
 							<div class="input-group-addon">$</div>
 							<input id="price" type="text" class="form-control js-decimal" th:field="*{value}"/>
 						</div>
 					</div>
 					
-					<div class="col-sm-3 form-group">
-						<label for="commission">Commission</label>
+					<div class="col-sm-3 form-group" th:classappend="${#fields.hasErrors('commission')} ? has-error">
+						<label for="commission" class="control-label">Commission</label>
 						<div class="input-group">
 							<input id="commission" type="text" class="form-control js-decimal" th:field="*{commission}"/>
 							<div class="input-group-addon">%</div>
 						</div>
 					</div>
 					
-					<div class="col-sm-3 form-group">
-						<label for="stock">Stock</label>
+					<div class="col-sm-3 form-group" th:classappend="${#fields.hasErrors('stockQuantity')} ? has-error">
+						<label for="stock" class="control-label">Stock</label>
 						<input id="stock" type="text" class="form-control js-plain" th:field="*{stockQuantity}"/>
 					</div>
 				</div>
