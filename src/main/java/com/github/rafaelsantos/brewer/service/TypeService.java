@@ -17,12 +17,12 @@ public class TypeService {
 	private TypeRepository typeRepository;
 	
 	@Transactional
-	public void save(Type type) {
+	public Type save(Type type) {
 		Optional<Type> typeFound = typeRepository.findByNameIgnoreCase(type.getName());
 		
 		if (typeFound.isPresent())
 			throw new TypeNameExistsException("Type name already exists");
 		
-		typeRepository.save(type);
+		return typeRepository.saveAndFlush(type);
 	}
 }

@@ -3,10 +3,14 @@ package com.github.rafaelsantos.brewer.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -42,5 +46,18 @@ public class TypeController {
 		
 		return new ModelAndView("redirect:/type/add");
 	}
-
+	
+	@RequestMapping(value = "/type", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody ResponseEntity<?> save(@RequestBody @Valid Type type, BindingResult result) {
+		if (result.hasErrors())
+			return ResponseEntity.badRequest().body(result.getFieldError().getDefaultMessage());
+		
+		try {
+			type = typeService.save(type);
+		} catch(TypeNameExistsException error) {
+			return ResponseEntity.badRequest().body(error.getMessage());
+		}
+		
+		return ResponseEntity.ok(type);
+	}
 }

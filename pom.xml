@@ -32,6 +32,7 @@
 		<flyway-maven-plugin.version>4.0.2</flyway-maven-plugin.version>
 		<mysql-connector-java.version>8.0.27</mysql-connector-java.version>
 		<spring-data-jpa.version>1.10.2.RELEASE</spring-data-jpa.version>
+		<jackson-core.version>2.7.5</jackson-core.version>
 	</properties>
 
 	<build>
@@ -173,6 +174,14 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring-data-jpa.version}</version>
+		</dependency>
+		
+		<!-- Jackson JSON -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson-core.version}</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>
