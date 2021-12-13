@@ -1,55 +1,66 @@
-$(function() {
-	var modal = $('#typeModal');
+var Brewer = Brewer || {};
+
+Brewer.TypeSave = (function() {
+
+	function TypeSave() {
+		this.modal = $('#typeModal');
+		this.buttonSave = this.modal.find('.js-modal-save-type');
+		this.form = this.modal.find('form');
+		this.url = this.form.attr('action');
+		this.input = $('#typeName');
+		this.errorDiv = $('.js-message-save-type');
+	}
 	
-	var form = modal.find('form');
-	form.on('submit', function(event) { event.preventDefault() });
-	
-	var buttonSave = modal.find('.js-modal-save-type');
-	buttonSave.on('click', onButtonSaveClick);
-	
-	var url = form.attr('action');
-	var input = $('#typeName');
-	var errorDiv = $('.js-message-save-type');
-	
-	modal.on('shown.bs.modal', onModalShow);
-	modal.on('hide.bs.modal', onModalClose);
+	TypeSave.prototype.start = function() {
+		this.form.on('submit', function(event) { event.preventDefault() });
+		this.modal.on('shown.bs.modal', onModalShow.bind(this));
+		this.modal.on('hide.bs.modal', onModalClose.bind(this));
+		this.buttonSave.on('click', onButtonSaveClick.bind(this));
+	}
 	
 	function onModalShow() {
-		input.focus();
+		this.input.focus();
 	}
 	
 	function onModalClose() {
-		input.val('');
-		errorDiv.addClass('hidden');
-		form.find('.form-group').removeClass('has-error');
+		this.input.val('');
+		this.errorDiv.addClass('hidden');
+		this.form.find('.form-group').removeClass('has-error');
 	}
 	
 	function onButtonSaveClick() {
-		var typeName = input.val().trim();
+		var typeName = this.input.val().trim();
 		
 		$.ajax({
-			url: url,
+			url: this.url,
 			method: 'POST',
 			contentType: 'application/json',
 			data: JSON.stringify({ name: typeName }),
-			error: onErrorSavingType,
-			success: onTypeSaved
+			error: onErrorSavingType.bind(this),
+			success: onTypeSaved.bind(this)
 		});
 	}
 	
 	function onErrorSavingType(object) {
 		var error = object.responseText;
 		
-		errorDiv.removeClass('hidden');
-		errorDiv.html('<span>' + error + '</span>');
+		this.errorDiv.removeClass('hidden');
+		this.errorDiv.html('<span>' + error + '</span>');
 		
-		form.find('.form-group').addClass('has-error');
+		this.form.find('.form-group').addClass('has-error');
 	}
 	
 	function onTypeSaved(type) {
 		var typeSelect = $('#type');
 		typeSelect.append('<option value=' + type.code + '>' + type.name + '</option>');
 		typeSelect.val(type.code);
-		modal.modal('hide');
+		this.modal.modal('hide');
 	}
+	
+	return TypeSave;
+}());
+
+$(function() {
+	var typeSave = new Brewer.TypeSave();
+	typeSave.start();
 });
