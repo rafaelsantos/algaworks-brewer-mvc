@@ -19,17 +19,18 @@ import com.github.rafaelsantos.brewer.service.TypeService;
 import com.github.rafaelsantos.brewer.service.exception.TypeNameExistsException;
 
 @Controller
+@RequestMapping("/type")
 public class TypeController {
 	
 	@Autowired
 	private TypeService typeService;
 	
-	@RequestMapping("type/add")
+	@RequestMapping("/add")
 	public ModelAndView add(Type type) {
 		return new ModelAndView("type/add");
 	}
 	
-	@RequestMapping(value = "/type/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView save(@Valid Type type, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			return add(type);
@@ -47,7 +48,7 @@ public class TypeController {
 		return new ModelAndView("redirect:/type/add");
 	}
 	
-	@RequestMapping(value = "/type", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody ResponseEntity<?> save(@RequestBody @Valid Type type, BindingResult result) {
 		if (result.hasErrors())
 			return ResponseEntity.badRequest().body(result.getFieldError().getDefaultMessage());
