@@ -53,11 +53,7 @@ public class TypeController {
 		if (result.hasErrors())
 			return ResponseEntity.badRequest().body(result.getFieldError().getDefaultMessage());
 		
-		try {
-			type = typeService.save(type);
-		} catch(TypeNameExistsException error) {
-			return ResponseEntity.badRequest().body(error.getMessage());
-		}
+		type = typeService.save(type);
 		
 		return ResponseEntity.ok(type);
 	}
