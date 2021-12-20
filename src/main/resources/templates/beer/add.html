@@ -5,7 +5,9 @@
 				xmlns:brewer="http://github.com/rafaelsantos/brewer"
       			layout:decorator="'layout/template'">
       			
-<head></head>
+<head>
+	<link rel="stylesheet" th:href="@{/stylesheets/vendor/upload.min.css}"/>
+</head>
 
 <body>
 	<section layout:fragment="content">
@@ -109,6 +111,18 @@
 					</div>
 				</div>
 				
+				<div class="row">
+					<div class="form-group col-sm-12">
+						<label class="control-label">Image</label>
+						
+						<div id="upload-drop" class="bw-upload">
+							<i class="glyphicon glyphicon-cloud-upload"></i>
+							<span>Drag image here or</span>
+							<a class="bw-upload-form-file">select <input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
+						</div>
+					</div>
+				</div>
+				
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit">Save</button>
 				</div>
@@ -120,6 +134,21 @@
 	</section>
 	<th:block layout:fragment="javascript">
 		<script th:src="@{/javascripts/type-save.js}"></script>
+		<script th:src="@{/javascripts/vendor/uikit.min.js}"></script>
+		<script th:src="@{/javascripts/vendor/upload.min.js}"></script>
+		
+		<script>
+			$(function() {
+				var settings = {
+					type: 'json',
+					filelimit: 1,
+					allow: '*.(jpg|jpeg|png)'
+				};
+				
+				UIkit.uploadSelect($('#upload-select'), settings);
+				UIkit.uploadDrop($('#upload-drop'), settings);
+			});
+		</script>
 	</th:block>
 </body>
 </html>
