@@ -9,10 +9,12 @@ public class ImageStorageRunnable implements Runnable {
 	
 	private MultipartFile[] files;
 	private DeferredResult<ImageDTO> result;
+	private ImageStorage imageStorage;
 	
-	public ImageStorageRunnable(MultipartFile[] files, DeferredResult<ImageDTO> result) {
+	public ImageStorageRunnable(MultipartFile[] files, DeferredResult<ImageDTO> result, ImageStorage imageStorage) {
 		this.files = files;
 		this.result = result;
+		this.imageStorage = imageStorage;
 	}
 
 
@@ -21,7 +23,7 @@ public class ImageStorageRunnable implements Runnable {
 		String imageName = files[0].getOriginalFilename();
 		String contentType = files[0].getContentType();
 		
+		this.imageStorage.saveTemporary(files);
 		result.setResult(new ImageDTO(imageName, contentType));
 	}
-
 }
