@@ -76,6 +76,11 @@ public class Beer {
 	@JoinColumn(name = "type_code")
 	private Type type;
 	
+	private String image;
+	
+	@Column(name = "content_type")
+	private String contentType;
+	
 	@PrePersist @PreUpdate
 	private void prePersistUpdate() {
 		sku = sku.toUpperCase();
@@ -167,6 +172,22 @@ public class Beer {
 
 	public void setType(Type type) {
 		this.type = type;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 	@Override
