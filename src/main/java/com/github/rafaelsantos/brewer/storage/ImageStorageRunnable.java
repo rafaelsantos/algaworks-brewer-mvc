@@ -20,10 +20,9 @@ public class ImageStorageRunnable implements Runnable {
 
 	@Override
 	public void run() {
-		String imageName = files[0].getOriginalFilename();
+		String imageName = this.imageStorage.saveTemporary(files);
 		String contentType = files[0].getContentType();
 		
-		this.imageStorage.saveTemporary(files);
 		result.setResult(new ImageDTO(imageName, contentType));
 	}
 }

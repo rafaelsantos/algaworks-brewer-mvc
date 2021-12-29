@@ -2,9 +2,11 @@ package com.github.rafaelsantos.brewer.storage.local;
 
 import static java.nio.file.FileSystems.getDefault;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,25 @@ public class ImageStorageLocal implements ImageStorage {
 		createPaths();
 	}
 
+	@Override
+	public String saveTemporary(MultipartFile[] files) {
+		if (files != null && files.length > 0) {
+			MultipartFile file = files[0];
+			String name = generateFileNamePrefix(file.getOriginalFilename());
+			String path = String.format("%s%s%s", this.temporary.toAbsolutePath(), getDefault().getSeparator(), name);
+			
+			try {
+				file.transferTo(new File(path));
+			} catch (IOException error) {
+				throw new RuntimeException("Error when saving temporary image", error);
+			}
+			
+			return name;
+		}
+		
+		return null;
+	}
+	
 	private void createPaths() {
 		try {
 			Files.createDirectories(this.local);
@@ -46,9 +67,8 @@ public class ImageStorageLocal implements ImageStorage {
 			throw new RuntimeException("Error when creating path to save image", error);
 		}
 	}
-
-	@Override
-	public void saveTemporary(MultipartFile[] files) {
-		System.out.println("Saving temporary image");
+	
+	private String generateFileNamePrefix(String filename) {
+		return String.format("%s_%s", UUID.randomUUID().toString(), filename);
 	}
 }
