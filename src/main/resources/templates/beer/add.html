@@ -118,7 +118,7 @@
 					
 						<label class="control-label">Image</label>
 						
-						<div class="js-image">
+						<div class="js-image" th:attr="data-url-images=@{/images}">
 							<div id="upload-drop" class="bw-upload">
 								<i class="glyphicon glyphicon-cloud-upload"></i>
 								<span>Drag image here or</span>
@@ -143,43 +143,7 @@
 		<script th:src="@{/javascripts/vendor/uikit.min.js}"></script>
 		<script th:src="@{/javascripts/vendor/upload.min.js}"></script>
 		<script th:src="@{/javascripts/vendor/handlebars.min.js}"></script>
-		
-		<script>
-			$(function() {
-				var settings = {
-					type: 'json',
-					filelimit: 1,
-					allow: '*.(jpg|jpeg|png)',
-					action: '/brewer/images',
-					complete: function(response) {
-						var imageName = $('input[name=image]');
-						var contentType = $('input[name=contentType]');
-						var source = $('#beer-image').html();
-						var container = $('.js-image');
-						var uploadDrop = $('#upload-drop');
-						
-						var template = Handlebars.compile(source);
-						var html = template({name: response.name});
-						
-						imageName.val(response.name);
-						contentType.val(response.contentType);
-						
-						uploadDrop.addClass('hidden');
-						container.append(html);
-						
-						$('.js-remove-image').on('click', function() {
-							$('.js-image-beer').remove();
-							uploadDrop.removeClass('hidden');
-							imageName.val('');
-							contentType.val('');
-						});
-					}
-				};
-				
-				UIkit.uploadSelect($('#upload-select'), settings);
-				UIkit.uploadDrop($('#upload-drop'), settings);
-			});
-		</script>
+		<script th:src="@{/javascripts/upload.js}"></script>
 	</th:block>
 </body>
 </html>
