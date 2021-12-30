@@ -118,10 +118,12 @@
 					
 						<label class="control-label">Image</label>
 						
-						<div id="upload-drop" class="bw-upload">
-							<i class="glyphicon glyphicon-cloud-upload"></i>
-							<span>Drag image here or</span>
-							<a class="bw-upload-form-file">select <input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
+						<div class="js-image">
+							<div id="upload-drop" class="bw-upload">
+								<i class="glyphicon glyphicon-cloud-upload"></i>
+								<span>Drag image here or</span>
+								<a class="bw-upload-form-file">select <input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -134,11 +136,13 @@
 		</div>
 		
 		<div th:replace="type/modal/add :: modal"></div>
+		<th:block th:replace="hbs/image"></th:block>
 	</section>
 	<th:block layout:fragment="javascript">
 		<script th:src="@{/javascripts/type-save.js}"></script>
 		<script th:src="@{/javascripts/vendor/uikit.min.js}"></script>
 		<script th:src="@{/javascripts/vendor/upload.min.js}"></script>
+		<script th:src="@{/javascripts/vendor/handlebars.min.js}"></script>
 		
 		<script>
 			$(function() {
@@ -148,8 +152,27 @@
 					allow: '*.(jpg|jpeg|png)',
 					action: '/brewer/images',
 					complete: function(response) {
-						$('input[name=image]').val(response.name);
-						$('input[name=contentType]').val(response.contentType);
+						var imageName = $('input[name=image]');
+						var contentType = $('input[name=contentType]');
+						var source = $('#beer-image').html();
+						var container = $('.js-image');
+						var uploadDrop = $('#upload-drop');
+						
+						var template = Handlebars.compile(source);
+						var html = template({name: response.name});
+						
+						imageName.val(response.name);
+						contentType.val(response.contentType);
+						
+						uploadDrop.addClass('hidden');
+						container.append(html);
+						
+						$('.js-remove-image').on('click', function() {
+							$('.js-image-beer').remove();
+							uploadDrop.removeClass('hidden');
+							imageName.val('');
+							contentType.val('');
+						});
 					}
 				};
 				

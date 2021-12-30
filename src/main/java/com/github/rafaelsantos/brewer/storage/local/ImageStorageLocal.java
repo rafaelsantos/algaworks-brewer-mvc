@@ -49,6 +49,15 @@ public class ImageStorageLocal implements ImageStorage {
 		return null;
 	}
 	
+	@Override
+	public byte[] fetchTemporaryImage(String filename) {
+		try {
+			return Files.readAllBytes(this.temporary.resolve(filename));
+		} catch (IOException error) {
+			throw new RuntimeException("Error when reading temporary image", error);
+		}
+	}
+	
 	private void createPaths() {
 		try {
 			Files.createDirectories(this.local);

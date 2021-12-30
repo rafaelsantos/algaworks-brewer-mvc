@@ -1,6 +1,8 @@
 package com.github.rafaelsantos.brewer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,5 +29,10 @@ public class ImageController {
 		thread.start();
 		
 		return result;
+	}
+	
+	@GetMapping("/temporary/{name:.*}")
+	public byte[] fetchTemporaryImage(@PathVariable("name") String filename) {
+		return imageStorage.fetchTemporaryImage(filename);
 	}
 }
