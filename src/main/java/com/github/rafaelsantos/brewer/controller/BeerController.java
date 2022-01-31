@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,10 +16,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.github.rafaelsantos.brewer.model.Beer;
 import com.github.rafaelsantos.brewer.model.Flavor;
 import com.github.rafaelsantos.brewer.model.Origin;
+import com.github.rafaelsantos.brewer.repository.BeerRepository;
 import com.github.rafaelsantos.brewer.repository.TypeRepository;
 import com.github.rafaelsantos.brewer.service.BeerService;
 
 @Controller
+@RequestMapping("/beer")
 public class BeerController {
 	
 	@Autowired
@@ -27,8 +29,11 @@ public class BeerController {
 	
 	@Autowired
 	private BeerService beerService;
+	
+	@Autowired
+	private BeerRepository beerRepository;
 
-	@RequestMapping("/beer/add")
+	@RequestMapping("/add")
 	public ModelAndView add(Beer beer) {
 		ModelAndView modelView = new ModelAndView("beer/add");
 		
@@ -39,7 +44,7 @@ public class BeerController {
 		return modelView;
 	}
 	
-	@RequestMapping(value = "/beer/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView save(@Valid Beer beer, BindingResult result, Model model, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			return add(beer);
@@ -49,5 +54,18 @@ public class BeerController {
 		attributes.addFlashAttribute("message", "Beer saved successfully!");
 		
 		return new ModelAndView("redirect:/beer/add");
+	}
+	
+	@GetMapping
+	public ModelAndView search() {
+		ModelAndView modelView = new ModelAndView("beer/search");
+		
+		modelView.addObject("types", typeRepository.findAll());
+		modelView.addObject("flavours", Flavor.values());
+		modelView.addObject("origins", Origin.values());
+		
+		modelView.addObject("beers", beerRepository.findAll());
+		
+		return modelView;
 	}
 }
