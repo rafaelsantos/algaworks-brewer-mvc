@@ -25,24 +25,24 @@
 				<brewer:message/>
 				
 				<div class="row">
-					<div class="col-sm-2 form-group" brewer:errorclass="sku">
+					<div class="col-sm-2 form-group bw-required" brewer:errorclass="sku">
 						<label for="sku" class="control-label">SKU</label>
 						<input id="sku" type="text" class="form-control" th:field="*{sku}"/>
 					</div>
 					
-					<div class="col-sm-10 form-group" brewer:errorclass="name">
+					<div class="col-sm-10 form-group bw-required" brewer:errorclass="name">
 						<label for="name" class="control-label">Name</label>
 						<input id="name" type="text" class="form-control" th:field="*{name}"/>
 					</div>
 				</div>
 		
-				<div class="form-group" brewer:errorclass="description">
+				<div class="form-group bw-required" brewer:errorclass="description">
 					<label for="description" class="control-label">Description</label>
 					<textarea id="description" rows="3" class="form-control" th:field="*{description}"></textarea>
 				</div>
 		
 				<div class="row">
-					<div class="col-sm-3 form-group" brewer:errorclass="type">
+					<div class="col-sm-3 form-group bw-required" brewer:errorclass="type">
 						<label for="type" class="control-label">Type</label>
 						
 						<div class="bw-field-action">
@@ -59,7 +59,7 @@
 						</div>
 					</div>
 					
-					<div class="col-sm-3 form-group" brewer:errorclass="flavor">
+					<div class="col-sm-3 form-group bw-required" brewer:errorclass="flavor">
 						<label for="flavor" class="control-label">Flavor</label>
 						<select id="flavor" class="form-control" th:field="*{flavor}">
 							<option value="">Select flavor</option>
@@ -67,7 +67,7 @@
 						</select>
 					</div>
 					
-					<div class="col-sm-3 form-group" brewer:errorclass="alcoholPercentage">
+					<div class="col-sm-3 form-group bw-required" brewer:errorclass="alcoholPercentage">
 						<label for="alcoholPercentage" class="control-label">Alcohol percentage</label>
 						<div class="input-group">
 							<input id="alcoholPercentage" type="text" class="form-control js-decimal" th:field="*{alcoholPercentage}"/>
@@ -75,7 +75,7 @@
 						</div>
 					</div>
 					
-					<div class="col-lg-3 col-sm-6 form-group" brewer:errorclass="origin">
+					<div class="col-lg-3 col-sm-6 form-group bw-required" brewer:errorclass="origin">
 						<label for="origin" class="control-label">Origin</label>
 						<div>
 							<th:block th:each="origin : ${origins}">
@@ -89,7 +89,7 @@
 				</div>
 				
 				<div class="row">
-					<div class="col-sm-3 form-group" brewer:errorclass="value">
+					<div class="col-sm-3 form-group bw-required" brewer:errorclass="value">
 						<label for="price" class="control-label">Price</label>
 						<div class="input-group">
 							<div class="input-group-addon">$</div>
@@ -105,7 +105,7 @@
 						</div>
 					</div>
 					
-					<div class="col-sm-3 form-group" brewer:errorclass="stockQuantity">
+					<div class="col-sm-3 form-group bw-required" brewer:errorclass="stockQuantity">
 						<label for="stock" class="control-label">Stock</label>
 						<input id="stock" type="text" class="form-control js-plain" th:field="*{stockQuantity}"/>
 					</div>

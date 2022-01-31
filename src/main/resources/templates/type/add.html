@@ -23,7 +23,7 @@
 			<th:block th:include="fragments/alerts/error"/>
 			
 			<div class="row">
-				<div class="form-group  col-sm-12" th:classappend="${#fields.hasErrors('name')} ? has-error">
+				<div class="form-group  col-sm-12 bw-required" th:classappend="${#fields.hasErrors('name')} ? has-error">
 					<label for="name" class="control-label">Name</label>
 					<input type="text" class="form-control" id="name" autofocus="autofocus" th:field="*{name}"/>
 				</div>
