@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BeerListener {
 	
-	@EventListener(condition = "#event.hasImage()")
+	@EventListener(condition = "#event.image")
 	public void beerSaved(BeerSavedEvent event) {
 		System.out.println(String.format("Beer saved %s", event.getBeer().getName()));
 	}

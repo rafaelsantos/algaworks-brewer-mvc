@@ -16,7 +16,7 @@ public class BeerSavedEvent {
 		return beer;
 	}
 	
-	public boolean hasImage() {
+	public boolean isImage() {
 		return !StringUtils.isEmpty(beer.getImage());
 	}
 }
