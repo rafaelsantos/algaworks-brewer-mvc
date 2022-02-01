@@ -125,6 +125,9 @@
 								</a>
 							</td>
 						</tr>
+						<tr th:if="${#lists.isEmpty(beers)}">
+							<td colspan="7">No beer found</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
