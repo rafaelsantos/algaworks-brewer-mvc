@@ -33,6 +33,7 @@
 		<mysql-connector-java.version>8.0.27</mysql-connector-java.version>
 		<spring-data-jpa.version>1.10.2.RELEASE</spring-data-jpa.version>
 		<jackson-core.version>2.7.5</jackson-core.version>
+		<thumbnailator.version>0.4.8</thumbnailator.version>
 	</properties>
 
 	<build>
@@ -181,6 +182,14 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson-core.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<!-- Thumbnailator -->
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>${thumbnailator.version}</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>

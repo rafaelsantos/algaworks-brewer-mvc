@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.util.StringUtils;
 
 import com.github.rafaelsantos.brewer.validation.SKU;
 
@@ -188,6 +189,10 @@ public class Beer {
 
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
+	}
+	
+	public String getImageOrMock() {
+		return !StringUtils.isEmpty(image) ? image : "beer-mock.png";
 	}
 
 	@Override

@@ -35,4 +35,9 @@ public class ImageController {
 	public byte[] fetchTemporaryImage(@PathVariable("name") String filename) {
 		return imageStorage.fetchTemporaryImage(filename);
 	}
+	
+	@GetMapping("/{name:.*}")
+	public byte[] fetchImage(@PathVariable("name") String filename) {
+		return imageStorage.fetchImage(filename);
+	}
 }
