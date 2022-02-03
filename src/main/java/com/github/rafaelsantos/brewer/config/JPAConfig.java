@@ -22,7 +22,7 @@ import com.github.rafaelsantos.brewer.model.Beer;
 import com.github.rafaelsantos.brewer.repository.BeerRepository;
 
 @Configuration
-@EnableJpaRepositories(basePackageClasses = BeerRepository.class, enableDefaultTransactions = false)
+@EnableJpaRepositories(basePackageClasses = BeerRepository.class, enableDefaultTransactions = false, repositoryImplementationPostfix = "Impl")
 @EnableTransactionManagement
 public class JPAConfig {
 

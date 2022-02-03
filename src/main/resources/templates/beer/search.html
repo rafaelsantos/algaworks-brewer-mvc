@@ -31,23 +31,23 @@
 		</div>
 		
 		<div class="container-fluid">
-			<form method="GET">
+			<form method="GET" th:object="${beerFilter}">
 				<div class="row">
 					<div class="form-group  col-sm-6">
 						<label class="control-label" for="sku">SKU</label>
-						<input type="text" class="form-control" id="sku" autofocus="autofocus"/>
+						<input type="text" class="form-control" id="sku" autofocus="autofocus" th:field="*{sku}"/>
 					</div>
 					
 					<div class="form-group  col-sm-6" >
 						<label class="control-label" for="name">Name</label>
-						<input type="text" class="form-control" id="name"/>
+						<input type="text" class="form-control" id="name" th:field="*{name}"/>
 					</div>
 				</div>
 				
 				<div class="row">
 					<div class="form-group  col-sm-6">
 						<label class="control-label" for="estilo">Estilo</label>
-						<select id="type" class="form-control">
+						<select id="type" class="form-control" th:field="*{type}">
 		                    <option value="">All types</option>
 		                    <option th:each="type : ${types}" th:text="${type.name}" th:value="${type.code}"></option>
 		                </select>
@@ -55,7 +55,7 @@
 					
 					<div class="form-group  col-sm-6">
 						<label class="control-label" for="flavor">Flavor</label> 
-						<select id="flavor" class="form-control">
+						<select id="flavor" class="form-control" th:field="*{flavor}">
 		                    <option value="">All flavors</option>
 		                    <option th:each="flavor : ${flavours}" th:value="${flavor}" th:text="${flavor.description}"></option>
 		                </select>
@@ -68,7 +68,7 @@
 						<div>
 		  					<th:block th:each="origin : ${origins}">
 		  						<div class="radio  radio-inline">
-			    					<input th:id="|id_${origin}|" type="radio" th:value="${origin}" name="origin"/>
+			    					<input th:id="|id_${origin}|" type="radio" th:value="${origin}" name="origin" th:field="*{origin}"/>
 			    					<label th:for="|id_${origin}|" th:text="${origin.description}">National</label>
 		    					</div>
 		  					</th:block>
@@ -82,9 +82,9 @@
 					<div class="col-sm-6  form-group">
 						<label for="minPrice">Minimal price</label>
 						<div class="form-inline">
-							<input type="text" class="form-control  aw-form-control-inline-sm  js-decimal" id="minPrice"/>
+							<input type="text" class="form-control  aw-form-control-inline-sm  js-decimal" id="minPrice" th:field="*{minimumPrice}"/>
 							<label for="maxPrice" class="aw-form-label-between">Maximum price</label>
-							<input type="text" class="form-control  aw-form-control-inline-sm  js-decimal" id="maxPrice"/>
+							<input type="text" class="form-control  aw-form-control-inline-sm  js-decimal" id="maxPrice" th:field="*{maximumPrice}"/>
 						</div>
 					</div>
 				</div>

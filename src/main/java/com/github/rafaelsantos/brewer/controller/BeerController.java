@@ -18,6 +18,7 @@ import com.github.rafaelsantos.brewer.model.Flavor;
 import com.github.rafaelsantos.brewer.model.Origin;
 import com.github.rafaelsantos.brewer.repository.BeerRepository;
 import com.github.rafaelsantos.brewer.repository.TypeRepository;
+import com.github.rafaelsantos.brewer.repository.filter.BeerFilter;
 import com.github.rafaelsantos.brewer.service.BeerService;
 
 @Controller
@@ -57,14 +58,14 @@ public class BeerController {
 	}
 	
 	@GetMapping
-	public ModelAndView search() {
+	public ModelAndView search(BeerFilter beerFilter, BindingResult result) {
 		ModelAndView modelView = new ModelAndView("beer/search");
 		
 		modelView.addObject("types", typeRepository.findAll());
 		modelView.addObject("flavours", Flavor.values());
 		modelView.addObject("origins", Origin.values());
 		
-		modelView.addObject("beers", beerRepository.findAll());
+		modelView.addObject("beers", beerRepository.filter(beerFilter));
 		
 		return modelView;
 	}
