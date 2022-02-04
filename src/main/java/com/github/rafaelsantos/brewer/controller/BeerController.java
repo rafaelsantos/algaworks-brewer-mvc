@@ -3,6 +3,7 @@ package com.github.rafaelsantos.brewer.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -71,7 +72,8 @@ public class BeerController {
 		modelView.addObject("flavours", Flavor.values());
 		modelView.addObject("origins", Origin.values());
 		
-		modelView.addObject("beers", beerRepository.filter(beerFilter, pageable));
+		Page<Beer> page = beerRepository.filter(beerFilter, pageable);
+		modelView.addObject("page", page);
 		
 		return modelView;
 	}
