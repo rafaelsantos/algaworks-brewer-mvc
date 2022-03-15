@@ -37,6 +37,7 @@
 	</properties>
 
 	<build>
+		<finalName>brewer</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -53,6 +54,9 @@
 				<version>${flyway-maven-plugin.version}</version>
 				<configuration>
 					<driver>com.mysql.jdbc.Driver</driver>
+					<url>jdbc:mysql://localhost/brewer?allowPublicKeyRetrieval=true&amp;useSSL=false</url>
+					<user>brewer</user>
+					<password>brewer</password>
 				</configuration>
 			</plugin>
 		</plugins>
