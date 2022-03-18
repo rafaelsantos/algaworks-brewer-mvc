@@ -1,5 +1,6 @@
 package com.github.rafaelsantos.brewer.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.github.rafaelsantos.brewer.controller.page.PageWrapper;
 import com.github.rafaelsantos.brewer.model.Beer;
 import com.github.rafaelsantos.brewer.model.Flavor;
 import com.github.rafaelsantos.brewer.model.Origin;
@@ -65,14 +67,14 @@ public class BeerController {
 	}
 	
 	@GetMapping
-	public ModelAndView search(BeerFilter beerFilter, BindingResult result, @PageableDefault(size = 2) Pageable pageable) {
+	public ModelAndView search(BeerFilter beerFilter, BindingResult result, @PageableDefault(size = 2) Pageable pageable, HttpServletRequest request) {
 		ModelAndView modelView = new ModelAndView("beer/search");
 		
 		modelView.addObject("types", typeRepository.findAll());
 		modelView.addObject("flavours", Flavor.values());
 		modelView.addObject("origins", Origin.values());
 		
-		Page<Beer> page = beerRepository.filter(beerFilter, pageable);
+		PageWrapper<Beer> page = new PageWrapper<>(beerRepository.filter(beerFilter, pageable), request);
 		modelView.addObject("page", page);
 		
 		return modelView;
