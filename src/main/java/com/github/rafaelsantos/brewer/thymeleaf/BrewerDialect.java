@@ -9,6 +9,7 @@ import org.thymeleaf.standard.StandardDialect;
 
 import com.github.rafaelsantos.brewer.thymeleaf.processor.ErrorClassAttributeTagProcessor;
 import com.github.rafaelsantos.brewer.thymeleaf.processor.MessageElementTagProcessor;
+import com.github.rafaelsantos.brewer.thymeleaf.processor.SortElementTagProcessor;
 
 public class BrewerDialect extends AbstractProcessorDialect {
 
@@ -22,6 +23,7 @@ public class BrewerDialect extends AbstractProcessorDialect {
 		
 		processors.add(new ErrorClassAttributeTagProcessor(dialectPrefix));
 		processors.add(new MessageElementTagProcessor(dialectPrefix));
+		processors.add(new SortElementTagProcessor(dialectPrefix));
 		
 		return processors;
 	}

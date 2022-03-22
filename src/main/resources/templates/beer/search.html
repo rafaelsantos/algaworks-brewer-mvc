@@ -98,10 +98,10 @@
 						<tr>
 							<th class="table-beer-col-image"></th>
 							<th class="table-beer-col-sku">
-								<th:block th:replace="fragments/sort :: sort (${page}, 'sku', 'SKU')"></th:block>
+								<brewer:sort page="${page}" field="sku" text="SKU"/>
 							</th>
 							<th class="table-beer-col-name">
-								<th:block th:replace="fragments/sort :: sort (${page}, 'name', 'Name')"></th:block>
+								<brewer:sort page="${page}" field="name" text="Name"/>
 							</th>
 							<th class="table-beer-col-type">Type</th>
 							<th class="table-beer-col-origin">Origin</th>
