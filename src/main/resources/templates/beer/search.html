@@ -97,8 +97,22 @@
 					<thead>
 						<tr>
 							<th class="table-beer-col-image"></th>
-							<th class="table-beer-col-sku">SKU</th>
-							<th class="table-beer-col-name">Name</th>
+							<th class="table-beer-col-sku">
+								<a th:href="${page.sort('sku')}" th:remove="${page.empty} ? tag">
+									SKU
+									<span class="dropup" th:remove="${page.desc('sku')} ? tag" th:if="${page.sorted('sku')}">
+										<span class="caret"></span>
+									</span>
+								</a>
+							</th>
+							<th class="table-beer-col-name">
+								<a th:href="${page.sort('name')}" th:remove="${page.empty} ? tag">
+									<span>Name</span>
+									<span class="dropup" th:remove="${page.desc('name')} ? tag" th:if="${page.sorted('name')}">
+										<span class="caret"></span>
+									</span>
+								</a>
+							</th>
 							<th class="table-beer-col-type">Type</th>
 							<th class="table-beer-col-origin">Origin</th>
 							<th class="table-beer-col-price">Price</th>
