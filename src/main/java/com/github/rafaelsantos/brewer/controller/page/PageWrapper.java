@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageWrapper<T> {
@@ -17,8 +16,12 @@ public class PageWrapper<T> {
     private UriComponentsBuilder uri;
 
     public PageWrapper(Page<T> page, HttpServletRequest request) {
+        String url = request.getRequestURL().append(
+            request.getQueryString() != null ? String.format("?%s", request.getQueryString()) : "")
+            .toString().replaceAll("\\+", "%20");
+
         this.page = page;
-        this.uri = ServletUriComponentsBuilder.fromRequest(request);
+        this.uri = UriComponentsBuilder.fromHttpUrl(url);
     }
 
     public List<T> getContent() {
