@@ -59,6 +59,10 @@
     vertical-align: middle;
 }
 
+.table-col-actions {
+	width: 80px;
+}
+
 .table-beer-col-image {
 	min-width: 50px;
 	width: 50px
@@ -87,5 +91,10 @@
 }
 
 .table-beer-col-actions {
+	width: 80px;
+}
+
+/* Colunas - Pesquisa de Estilos */
+.table-type-col-code {
 	width: 80px;
 }
