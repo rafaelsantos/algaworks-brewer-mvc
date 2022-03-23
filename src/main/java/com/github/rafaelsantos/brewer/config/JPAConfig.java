@@ -4,6 +4,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -22,6 +23,7 @@ import com.github.rafaelsantos.brewer.model.Beer;
 import com.github.rafaelsantos.brewer.repository.BeerRepository;
 
 @Configuration
+@ComponentScan(basePackageClasses = { BeerRepository.class })
 @EnableJpaRepositories(basePackageClasses = BeerRepository.class, enableDefaultTransactions = false, repositoryImplementationPostfix = "Impl")
 @EnableTransactionManagement
 public class JPAConfig {
